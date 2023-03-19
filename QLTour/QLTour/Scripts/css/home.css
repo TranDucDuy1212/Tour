@@ -1,0 +1,17 @@
+﻿.home {
+    display: flex;
+    justify-content: center;
+}
+
+.search-input {
+    max-width: 100%;
+    width: 50%;
+}
+
+.search-button {
+    width: 20%;
+}
+
+/*.card {
+    padding: 3px;
+}*/

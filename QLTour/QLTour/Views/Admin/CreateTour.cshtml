@@ -1,0 +1,65 @@
+﻿@model QLTour.Models.Tour
+@using QLTour.Helpers
+
+@{
+    ViewBag.Title = "Thêm mới Tour";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="col-9 main-layout-right">
+    <div class="h2 text-center p-3">Thêm mới Tour</div>
+    @using (Html.BeginForm("CreateTour", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <form>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="tourName" class="form-label">Tên tour</label>
+                    @Html.EditorFor(model => model.Ten, new { htmlAttributes = new { @class = "form-control" } })
+                    <p class="text-danger">@ViewBag.MsgTen</p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="cost" class="form-label">Giá</label>
+                    @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "form-control" } })
+                    <p class="text-danger">@ViewBag.MsgGia</p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="startLocation" class="form-label">Điểm khởi hành</label>
+                    @Html.DropDownList("DiemKhoiHanh", null, htmlAttributes: new { @class = "form-control" })
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="destination" class="form-label">Điểm đến</label>
+                    @Html.DropDownList("DiemDen", null, htmlAttributes: new { @class = "form-control" })
+                    <p class="text-danger">@ViewBag.MsgDiemDen</p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="startDate" class="form-label">Ngày khởi hành</label>
+                    @Html.EditorFor(model => model.NgayKhoiHanh, new { htmlAttributes = new { @class = "form-control" } })
+                    <p class="text-danger">@ViewBag.MsgNgayKhoiHanh</p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="tourLeft" class="form-label">Ngày kết thúc</label>
+                    @Html.EditorFor(model => model.NgayKetThuc, new { htmlAttributes = new { @class = "form-control" } })
+                    <p class="text-danger">@ViewBag.MsgNgayKetThuc</p>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="image" class="form-label">Hình ảnh</label>
+                    @Html.TextBox("HinhSP", "", new { type = "file", @class = "form-control" })
+                    <p class="text-danger">@ViewBag.MsgHinh</p>
+                </div>
+                <div class="col-md-12 mb-3" id="editor">
+                    <label for="description" class="form-label">Mô tả</label>
+                    <textarea class="form-control"
+                              id="description"
+                              name="description">@ViewBag.Mota</textarea>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a href="@Url.Action("Tour", "Admin")" class="btn btn-secondary">Đóng</a>
+        </form>
+    }
+    <br />
+    <br />
+    <br />
+    <br />
+</div>

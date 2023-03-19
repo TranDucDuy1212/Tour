@@ -1,0 +1,49 @@
+﻿@model IEnumerable<QLTour.Models.DatTour>
+
+@{
+    ViewBag.Title = "Lịch sử đặt vé";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="dcontainer text-center h2 m-5">
+    Lịch sử đặt vé
+</div>
+<div class="container">
+    <table class="table" id="myTable" style="text-align:center">
+        <thead class="table-success">
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Tour ID</th>
+                <th scope="col">Tên tour</th>
+                <th scope="col">Ngày đặt</th>
+                <th scope="col">Giá vé</th>
+                <th scope="col">Số vé</th>
+                <th scope="col">Thành tiền</th>
+            </tr>          
+        </thead>
+        <tbody id="body">
+            @{ int dem = 0;
+                decimal? tong = 0;}
+            @foreach (var item in Model)
+            {
+                dem++;
+                <tr>
+                    <td scope="col">@dem</td>
+                    <td scope="col">@Html.DisplayFor(m => item.Tour1.ID)</td>
+                    <td scope="col">@Html.DisplayFor(m => item.Tour1.Ten)</td>
+                    <td scope="col">@String.Format("{0:d/M/yyyy}", item.NgayDat)</td>
+                    <td scope="col">@String.Format("{0:0,###}", item.Tour1.Gia)</td>
+                    <td scope="col">@Html.DisplayFor(m => item.SoLuong)</td>
+                    <td scope="col">@String.Format("{0:0,###}", (item.Tour1.Gia * item.SoLuong))</td>
+                </tr>
+                tong += (item.Tour1.Gia * item.SoLuong);
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="6" style="text-align:right">Tổng tiền:</td>
+                <td>@String.Format("{0:0,###}", tong)</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

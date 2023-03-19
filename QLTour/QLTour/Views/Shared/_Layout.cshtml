@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous" />
+    <link href="~/Scripts/css/layout.css" rel="stylesheet" />
+    @*<link href="~/Scripts/css/home.css" rel="stylesheet" />*@
+    <link href="~/Scripts/css/detail.css" rel="stylesheet" />
+    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+</head>
+<body>
+    <!--HEADER START-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light header">
+        <div class="container">
+            <a class="navbar-brand" href="@Url.Action("Index", "Home", new {id=""})">OU TOUR</a>
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        @Html.ActionLink("Trang chủ", "Index", "Home", new { area = "", id = "" }, new { @class = "nav-link" })
+                    </li>
+                    @{Html.RenderAction("Index", "Menu"); }
+                    @*<li class="nav-item">
+                        @Html.ActionLink("Về chúng tôi", "About", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Liên hệ", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>*@
+                    <li class="nav-item">
+                        @Html.ActionLink("Quản lý", "Index", "Admin", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+    <!--HEADER END-->
+    @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+            <div class="container">
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                    </div>
+                </div>
+        </nav>*@
+    @*<div class="container body-content">*@
+    @RenderBody()
+    <br />
+    <br />
+    <br />
+    <!--FOOTER START-->
+    <div class="footer">
+        <div class="row">
+            <div class="col">
+                <footer class="bg-light text-center text-lg-start">
+                    <div class="text-center p-3"
+                         style="background-color: rgba(0, 0, 0, 0.2)">
+                        © 2023 Open University. All rights reserved.
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+    <!--FOOTER END-->
+    @*</div>*@
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"
+            integrity="sha512-xwXCkUz8pk4nk4na91gQ49Xq3+RRYRCJWVemvSfA4zV+pfyAKJ4M4bBVLtb6L38V6ZI8YUWl6UaE6cn+G7c5FQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

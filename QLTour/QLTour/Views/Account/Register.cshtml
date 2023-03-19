@@ -1,0 +1,74 @@
+﻿@model QLTour.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Đăng ký";
+}
+
+@*<main aria-labelledby="title">
+    <h2 id="title">@ViewBag.Title.</h2>
+
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <h4>Create a new account.</h4>
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="row">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="offset-md-2 col-md-10">
+                <input type="submit" value="Register" class="btn btn-outline-dark" />
+            </div>
+        </div>
+    }
+</main>*@
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <h2 class="text-center mb-4">Đăng ký</h2>
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.Email, new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @style = "max-width:100%" })
+                </div>
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.Password, new { @class = "form-label" })
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @style = "max-width:100%" })
+                </div>
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.ConfirmPassword, new { @class = "form-label" })
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @style = "max-width:100%" })
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">Đăng Ký</button>
+                </div>
+                <div class="text-center mt-3">
+                    <span>Bạn đã có tài khoản? </span><a href="@Url.Action("Login", "Account")">Đăng Nhập</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

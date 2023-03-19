@@ -1,0 +1,44 @@
+﻿<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="@Url.Action("Index", "Home", new { id = "VNM"})" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Du lịch trong nước
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <div class="mega" style="width: 200px; ">
+            @foreach (var item in ViewBag.DiaDiem)
+            {
+                <a class="dropdown-item" href="@Url.Action("Index", "Home", new { id = item.Key})">@item.Value</a>
+            }
+        </div>
+    </div>
+</li>
+
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="@Url.Action("Index", "Home", new { id = "NN"})" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Du lịch ngoài nước
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <div class="mega" style="width: 500px; ">
+            <div class="row">
+                <div class="col-4">
+                    @foreach (var item in ViewBag.ChauA)
+                    {
+                        <a class="dropdown-item" href="@Url.Action("Index", "Home", new { id = item.Key})">@item.Value</a>
+                    }
+                </div>
+                <div class="col-4">
+                    @foreach (var item in ViewBag.ChauAu)
+                    {
+                        <a class="dropdown-item" href="@Url.Action("Index", "Home", new { id = item.Key})">@item.Value</a>
+                    }
+                </div>
+                <div class="col-4">
+                    @foreach (var item in ViewBag.ChauMy)
+                    {
+                        <a class="dropdown-item" href="@Url.Action("Index", "Home", new { id = item.Key})">@item.Value</a>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</li>

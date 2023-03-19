@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanLyTourModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BinhLuan">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BinhLuan1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NgayBinhLuan" Type="DateTime" Precision="0" />
+    <Property Name="NguoiDungID" Type="Int32" />
+    <Property Name="TourID" Type="Int32" />
+    <NavigationProperty Name="NguoiDung" Relationship="Self.FK__BinhLuan__NguoiD__693CA210" FromRole="BinhLuan" ToRole="NguoiDung" />
+    <NavigationProperty Name="Tour" Relationship="Self.FK__BinhLuan__TourID__6A30C649" FromRole="BinhLuan" ToRole="Tour" />
+  </EntityType>
+  <EntityType Name="DatTour">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NgayDat" Type="DateTime" Precision="0" />
+    <Property Name="SoLuong" Type="Int32" />
+    <Property Name="NguoiDungID" Type="Int32" />
+    <Property Name="TourID" Type="Int32" />
+    <NavigationProperty Name="NguoiDung" Relationship="Self.FK__DatTour__NguoiDu__656C112C" FromRole="DatTour" ToRole="NguoiDung" />
+    <NavigationProperty Name="Tour" Relationship="Self.FK__DatTour__TourID__66603565" FromRole="DatTour" ToRole="Tour" />
+  </EntityType>
+  <EntityType Name="DiaDiem">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Ten" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="LoaiTourID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="LoaiTour" Relationship="Self.FK__DiaDiem__LoaiTou__5BE2A6F2" FromRole="DiaDiem" ToRole="LoaiTour" />
+    <NavigationProperty Name="Tours" Relationship="Self.FK__Tour__DiemDen__5FB337D6" FromRole="DiaDiem" ToRole="Tour" />
+    <NavigationProperty Name="Tours1" Relationship="Self.FK__Tour__DiemKhoiHa__60A75C0F" FromRole="DiaDiem" ToRole="Tour" />
+  </EntityType>
+  <EntityType Name="LoaiTour">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Ten" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DiaDiems" Relationship="Self.FK__DiaDiem__LoaiTou__5BE2A6F2" FromRole="LoaiTour" ToRole="DiaDiem" />
+    <NavigationProperty Name="Tours" Relationship="Self.FK__Tour__LoaiTourID__5EBF139D" FromRole="LoaiTour" ToRole="Tour" />
+  </EntityType>
+  <EntityType Name="NguoiDung">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TaiKhoan" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="MatKhau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Ten" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="LoaiTaiKhoan" Type="Int32" />
+    <NavigationProperty Name="BinhLuans" Relationship="Self.FK__BinhLuan__NguoiD__693CA210" FromRole="NguoiDung" ToRole="BinhLuan" />
+    <NavigationProperty Name="DatTours" Relationship="Self.FK__DatTour__NguoiDu__656C112C" FromRole="NguoiDung" ToRole="DatTour" />
+  </EntityType>
+  <EntityType Name="Tour">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ten" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Gia" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="SoLuong" Type="Int32" />
+    <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Hinh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ThoiGian" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="NgayKhoiHanh" Type="DateTime" Precision="0" />
+    <Property Name="DiemKhoiHanh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DiemDen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LoaiTourID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BinhLuans" Relationship="Self.FK__BinhLuan__TourID__6A30C649" FromRole="Tour" ToRole="BinhLuan" />
+    <NavigationProperty Name="DatTours" Relationship="Self.FK__DatTour__TourID__66603565" FromRole="Tour" ToRole="DatTour" />
+    <NavigationProperty Name="DiaDiem" Relationship="Self.FK__Tour__DiemDen__5FB337D6" FromRole="Tour" ToRole="DiaDiem" />
+    <NavigationProperty Name="DiaDiem1" Relationship="Self.FK__Tour__DiemKhoiHa__60A75C0F" FromRole="Tour" ToRole="DiaDiem" />
+    <NavigationProperty Name="LoaiTour" Relationship="Self.FK__Tour__LoaiTourID__5EBF139D" FromRole="Tour" ToRole="LoaiTour" />
+  </EntityType>
+  <Association Name="FK__BinhLuan__NguoiD__693CA210">
+    <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1" />
+    <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NguoiDung">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BinhLuan">
+        <PropertyRef Name="NguoiDungID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BinhLuan__TourID__6A30C649">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="0..1" />
+    <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tour">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BinhLuan">
+        <PropertyRef Name="TourID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DatTour__NguoiDu__656C112C">
+    <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1" />
+    <End Role="DatTour" Type="Self.DatTour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NguoiDung">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DatTour">
+        <PropertyRef Name="NguoiDungID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DatTour__TourID__66603565">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="0..1" />
+    <End Role="DatTour" Type="Self.DatTour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tour">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DatTour">
+        <PropertyRef Name="TourID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DiaDiem__LoaiTou__5BE2A6F2">
+    <End Role="LoaiTour" Type="Self.LoaiTour" Multiplicity="0..1" />
+    <End Role="DiaDiem" Type="Self.DiaDiem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiTour">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DiaDiem">
+        <PropertyRef Name="LoaiTourID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tour__DiemDen__5FB337D6">
+    <End Role="DiaDiem" Type="Self.DiaDiem" Multiplicity="0..1" />
+    <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DiaDiem">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Tour">
+        <PropertyRef Name="DiemDen" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tour__DiemKhoiHa__60A75C0F">
+    <End Role="DiaDiem" Type="Self.DiaDiem" Multiplicity="0..1" />
+    <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DiaDiem">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Tour">
+        <PropertyRef Name="DiemKhoiHanh" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tour__LoaiTourID__5EBF139D">
+    <End Role="LoaiTour" Type="Self.LoaiTour" Multiplicity="0..1" />
+    <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiTour">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Tour">
+        <PropertyRef Name="LoaiTourID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QuanLyTourEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BinhLuans" EntityType="Self.BinhLuan" />
+    <EntitySet Name="DatTours" EntityType="Self.DatTour" />
+    <EntitySet Name="DiaDiems" EntityType="Self.DiaDiem" />
+    <EntitySet Name="LoaiTours" EntityType="Self.LoaiTour" />
+    <EntitySet Name="NguoiDungs" EntityType="Self.NguoiDung" />
+    <EntitySet Name="Tours" EntityType="Self.Tour" />
+    <AssociationSet Name="FK__BinhLuan__NguoiD__693CA210" Association="Self.FK__BinhLuan__NguoiD__693CA210">
+      <End Role="NguoiDung" EntitySet="NguoiDungs" />
+      <End Role="BinhLuan" EntitySet="BinhLuans" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BinhLuan__TourID__6A30C649" Association="Self.FK__BinhLuan__TourID__6A30C649">
+      <End Role="Tour" EntitySet="Tours" />
+      <End Role="BinhLuan" EntitySet="BinhLuans" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DatTour__NguoiDu__656C112C" Association="Self.FK__DatTour__NguoiDu__656C112C">
+      <End Role="NguoiDung" EntitySet="NguoiDungs" />
+      <End Role="DatTour" EntitySet="DatTours" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DatTour__TourID__66603565" Association="Self.FK__DatTour__TourID__66603565">
+      <End Role="Tour" EntitySet="Tours" />
+      <End Role="DatTour" EntitySet="DatTours" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DiaDiem__LoaiTou__5BE2A6F2" Association="Self.FK__DiaDiem__LoaiTou__5BE2A6F2">
+      <End Role="LoaiTour" EntitySet="LoaiTours" />
+      <End Role="DiaDiem" EntitySet="DiaDiems" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tour__DiemDen__5FB337D6" Association="Self.FK__Tour__DiemDen__5FB337D6">
+      <End Role="DiaDiem" EntitySet="DiaDiems" />
+      <End Role="Tour" EntitySet="Tours" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tour__DiemKhoiHa__60A75C0F" Association="Self.FK__Tour__DiemKhoiHa__60A75C0F">
+      <End Role="DiaDiem" EntitySet="DiaDiems" />
+      <End Role="Tour" EntitySet="Tours" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tour__LoaiTourID__5EBF139D" Association="Self.FK__Tour__LoaiTourID__5EBF139D">
+      <End Role="LoaiTour" EntitySet="LoaiTours" />
+      <End Role="Tour" EntitySet="Tours" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

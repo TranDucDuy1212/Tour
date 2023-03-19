@@ -1,0 +1,18 @@
+﻿.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    max-width: 100%;
+    width: 100%;
+}
+
+.danger {
+    color: #dc3545;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin: auto;
+    top: 100%;
+    right: 0%;
+}

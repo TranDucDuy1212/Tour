@@ -1,0 +1,50 @@
+﻿@model IEnumerable<QLTour.Models.Tour>
+@using QLTour.Helpers
+@{
+    ViewBag.Title = "Trang chủ";
+}
+
+<div class="container p-3 home" style=" display: flex; justify-content: center"> 
+    @using (Html.BeginForm("Index", "Home", FormMethod.Get, new { @class = "d-flex search-input", @style="max-width: 100%;width: 50%;"}))
+    {
+            @Html.TextBox("startDate", "", new { @class = "form-control", @type = "date" })
+            <button class="btn btn-outline-success search-button" type="submit" style="margin-left: 10px; width: 20%">
+                Tìm kiếm
+            </button>
+    }
+    </div>
+<div class="container p-3 text-center">
+    <div class="col-12">
+        <h4>Du lịch giá rẻ</h4>
+    </div>
+    <p class="text-danger">@ViewBag.Msg</p>
+</div>
+
+<!-- ITEMS -->
+<div class="container">
+    <div class="row align-items-start" style="margin: 5px 0px 5px 0px">
+        @foreach (var item in Model)
+        {
+            <div class="card col-3">
+                @{ var n = (item.ThoiGian - 1);}
+                @Html.Image("https://localhost:44302/" + item.Hinh, "100%", "", "Lỗi hình")
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(m => item.Ten)</h5>
+                    <p class="card-text">
+                        <p>
+                            Thời gian: <b>@Html.DisplayFor(m => item.ThoiGian) ngày @n đêm</b><br />
+                            Ngày khởi hành: <b>@String.Format("{0:d/M/yyyy}", item.NgayKhoiHanh)</b><br />
+                            Ngày kết thúc:  <b>@String.Format("{0:d/M/yyyy}", item.NgayKetThuc)</b><br />
+                            Nơi đến: <b>@Html.DisplayFor(m => item.DiaDiem1.Ten)</b> <br />
+                            Giá : <b class="danger">@String.Format("{0:0,###}", item.Gia) VNĐ</b>
+                        </p>
+                    </p>
+                    <a href="@Url.Action("Details", new { id = item.ID } )" class="btn btn-primary">Chi tiết</a>
+                    @*<a href="@Url.Action("Index", "BookTour", new { id = item.ID } )" class="btn btn-primary">Đặt tour</a>*@
+                </div>
+            </div>
+        }
+    </div>
+    <br />
+    <br />
+</div>

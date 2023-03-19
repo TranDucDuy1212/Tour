@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="638d77f90642432e9fc247f57c2b9771" Name="Diagram1">
+        <EntityTypeShape EntityType="QLTourModel.BinhLuan" Width="1.5" PointX="7.5" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTourModel.DatTour" Width="1.5" PointX="10.5" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTourModel.DiaDiem" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTourModel.LoaiTour" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTourModel.NguoiDung" PointX="3.375" PointY="8" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTourModel.Tour" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <AssociationConnector ManuallyRouted="false" Association="QLTourModel.FK__BinhLuan__NguoiD__412EB0B6" />
+        <AssociationConnector ManuallyRouted="false" Association="QLTourModel.FK__BinhLuan__NguoiD__4E88ABD4" />
+        <AssociationConnector Association="QLTourModel.FK__BinhLuan__TourID__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTourModel.FK__BinhLuan__TourID__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector ManuallyRouted="false" Association="QLTourModel.FK__DatTour__NguoiDu__4316F928" />
+        <AssociationConnector ManuallyRouted="false" Association="QLTourModel.FK__DatTour__NguoiDu__5070F446" />
+        <AssociationConnector Association="QLTourModel.FK__DatTour__TourID__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTourModel.FK__DatTour__TourID__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTourModel.FK__DiaDiem__LoaiTou__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTourModel.FK__DiaDiem__LoaiTou__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTourModel.FK__Tour__DiemDen__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTourModel.FK__Tour__DiemDen__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTourModel.FK__Tour__DiemKhoiHa__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTourModel.FK__Tour__DiemKhoiHa__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTourModel.FK__Tour__LoaiTourID__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTourModel.FK__Tour__LoaiTourID__5535A963" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QLTourModel.ThanhPho" Width="1.5" PointX="0.75" PointY="6.875" />
+        <AssociationConnector Association="QLTourModel.FK_NguoiDung_ThanhPho" />
+        <AssociationConnector Association="QLTourModel.FK_ThanhPho_ThanhPho" />
+        <EntityTypeShape EntityType="QLTourModel.GiaoDich" Width="1.5" PointX="7.75" PointY="6.75" />
+        <EntityTypeShape EntityType="QLTourModel.NganHang" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="QLTourModel.TaiKhoan" Width="1.5" PointX="5.75" PointY="7.75" />
+        <AssociationConnector Association="QLTourModel.FK_TaiKhoan_TaiKhoan" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

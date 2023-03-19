@@ -1,0 +1,59 @@
+﻿@model IEnumerable<QLTour.Models.Tour>
+
+@{
+    ViewBag.Title = "StatisticTour";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="col-9 main-layout-right">
+    <div class="h2 text-center p-3">Quản lý Tour</div>
+    <hr />
+    <table class="table">
+        <thead class="table-success">
+            <tr>
+                <th scope="col">TourID</th>
+                <th scope="col">Tên</th>
+                <th>Giá Tour</th>
+                <th>Số vé bán</th>
+                <th scope="col">Doanh Thu</th>
+                <th>Đơn vị tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ decimal? tong = 0;
+               decimal? tien = 0;}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@Html.DisplayFor(m => item.ID)</th>
+                    <td>@Html.DisplayFor(m => item.Ten)</td>
+                    <td>@String.Format("{0:0,###}", item.Gia)</td>
+                    @if (item.TongVeBan != null)
+                    {
+                        <td>@Html.DisplayFor(m => item.TongVeBan)</td>
+                    }
+                    else
+                    {
+                        <td>0</td>
+                    }
+                    @if (item.TongVeBan != null)
+                    {
+                        <td>@String.Format("{0:0,###}", (item.Gia * item.TongVeBan))</td>
+                        tien = (item.Gia * item.TongVeBan);
+                        tong += tien;
+                    }
+                    else
+                    {
+                        <td>0</td>
+                    }
+                    <td>VNĐ</td>
+                </tr>
+            }
+            <tr>
+                <td colspan="4" style="text-align:right"><b>Tổng tiền:</b></td>
+                <td>@String.Format("{0:0,###}", tong)</td>
+                <td>VNĐ</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<QLTour.Models.NguoiDung>
+
+@{
+    ViewBag.Title = "Quản lý khách hàng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<!--BODY START-->
+<div class="col-9 main-layout-right">
+    <div class="h2 text-center p-3">Quản lý khách hàng</div>
+    <hr />
+    <table class="table">
+        <thead class="table-success">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Tên</th>
+                <th scope="col">Email</th>
+                <th scope="col">SĐT</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@Html.DisplayFor(m => item.ID)</th>
+                    <td>@Html.DisplayFor(m => item.Ten)</td>
+                    <td>@String.Format("{0:d/M/yyyy}", item.Email)</td>
+                    <td>@Html.DisplayFor(m => item.SDT)</td>
+                    <td>
+                        <a href="@Url.Action("StatisticUser", "Admin", new { id = item.ID })" class="btn btn-primary">
+                            Thống kê
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

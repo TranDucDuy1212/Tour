@@ -1,0 +1,85 @@
+﻿@model QLTour.Models.NguoiDung
+
+@{
+    ViewBag.Title = "Chỉnh sửa thông tin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="width: 55%; margin: 0 auto;">
+    <div class="container-fluid justify-content-center align-items-center">
+        <div class="card" style="max-width: 100%;">
+            <div class="card-header">Thay đổi thông tin</div>
+            <div class="card-body">
+                @using (Html.BeginForm("EditProfile", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <img src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"
+                                 alt="Profile Picture" class="rounded-circle mb-3"
+                                 style="max-width: 60%; max-height: 60%; right:20%;" />
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Tên </h5>
+                                    <p class="text-danger">@ViewBag.MsgTen</p>
+                                    <div class="input-group">                                        
+                                        @Html.EditorFor(model => model.Ten, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Email</h5>
+                                    <p class="text-danger">@ViewBag.MsgEmail</p>
+                                    <div class="input-group">                                   
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @Readonly = "True" } })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Điện thoại </h5>
+                                    <p class="text-danger">@ViewBag.MsgSDT</p>
+                                    <div class="input-group">
+                                        @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Địa chỉ </h5>
+                                    <p class="text-danger">@ViewBag.MsgDiaChi</p>
+                                    <div class="input-group">
+                                        @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                    <div class="input-group">
+                                        @Html.DropDownList("ThanhPhoID", null, htmlAttributes: new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Passport</h5>
+                                    <p class="text-danger">@ViewBag.MsgPassport</p>
+                                    <div class="input-group">                                        
+                                        @Html.EditorFor(model => model.Passport, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg"
+                                    style="position: absolute; bottom: 1%; right: 5%;">
+                                Lưu thay đổi
+                            </button>
+                        </div>
+                    </div>
+                }
+                </div>
+        </div>
+        @*<div class="d-flex justify-content-end align-items-end">
+            <a href="edit_password.html" class="text-decoration-none">Đổi mật khẩu</a>
+        </div>*@
+    </div>
+</div>

@@ -1,0 +1,88 @@
+﻿@model QLTour.Models.Tour 
+@using QLTour.Helpers
+@{
+    ViewBag.Title = "Chi tiết Tour";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-3">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.Image("https://localhost:44302/" + Model.Hinh, "100%", "", "Lỗi hình")
+                </div>
+                <div class="col-md-6">
+                    <h3 id="tour-name"></h3>
+                    <p id="tour-description"></p>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th scope="row">Tên tour:</th>
+                                <td>
+                                    @Html.DisplayFor(model => model.Ten)
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Giá:</th>
+                                <td id="tour-cost">
+                                    @String.Format("{0:0,###}", Model.Gia) VNĐ
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Thời gian:</th>
+                                @{ var n = (Model.ThoiGian - 1);}
+                                <td id="tour-duration">@Html.DisplayFor(model => model.ThoiGian) ngày @n đêm</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Ngày khởi hành:</th>
+                                <td id="tour-start-date">@String.Format("{0:d/M/yyyy}", Model.NgayKhoiHanh)</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Ngày kết thúc:</th>
+                                <td id="tour-start-date">@String.Format("{0:d/M/yyyy}", Model.NgayKetThuc)</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Điểm khởi hành:</th>
+                                <td id="tour-start-date">@Html.DisplayFor(model => model.DiaDiem2.Ten)</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Điểm đến:</th>
+                                <td id="tour-start-date">@Html.DisplayFor(model => model.DiaDiem1.Ten)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    @*<a href="@Url.Action("Index", "BookTour", new { id = Model.ID } )" class="btn btn-primary">Đặt Tour</a>*@
+                </div>
+            </div>
+            <div>
+                <h2 scope="row">Mô tả:</h2>
+                <p id="tour-left">@Html.DisplayFor(model => model.MoTa)</p>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <h5>Nhập thông tin đặt tour:</h5>
+                    @using (Html.BeginForm("Index", "BookTour", FormMethod.Get))
+                    {
+                            <div class="mb-3">
+                                <label for="tour-id" class="form-label">Tour ID:</label>
+                                @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control", @Readonly = "True", @id = "id", @name="id" } })
+                            </div>
+                            <div class="mb-3">
+                                <label for="no-of-tickets" class="form-label">Số vé:</label>
+                                <input type="number"
+                                       class="form-control"
+                                       id="SoVe"
+                                       name="SoVe"
+                                       min="1"
+                                       max="10"
+                                       value="1"
+                                       required />
+                            </div>
+                            <button type="submit" class="btn btn-primary">Đặt Tour</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

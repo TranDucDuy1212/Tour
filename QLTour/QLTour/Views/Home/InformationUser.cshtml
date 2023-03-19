@@ -1,0 +1,58 @@
+﻿@model QLTour.Models.NguoiDung
+
+@{
+    ViewBag.Title = "Thông tin người dùng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="width: 55%; margin: 0 auto;">
+    <div class="container-fluid justify-content-center align-items-center">
+        <div class="card" style="max-width: 100%;">
+            <div class="card-header">Hồ sơ</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <img src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"
+                             alt="Profile Picture" class="rounded-circle mb-3"
+                             style="max-width: 60%; max-height: 60%; right:20%;" />
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Tên</h5>
+                                <p class="card-text">@Html.DisplayFor(model => model.Ten)</p>
+                            </div>
+                        </div>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Gmail</h5>
+                                <p class="card-text">@Html.DisplayFor(model => model.Email)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Điện thoại</h5>
+                                <p class="card-text">@Html.DisplayFor(model => model.SDT)</p>
+                            </div>
+                        </div>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Địa chỉ</h5>
+                                <p class="card-text">@Html.DisplayFor(model => model.DiaChi), @Html.DisplayFor(model => model.ThanhPho.Ten)</p>
+                            </div>
+                        </div>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Passport</h5>
+                                <p class="card-text">@Html.DisplayFor(model => model.Passport)</p>
+                            </div>
+                        </div>
+
+                        <a href="@Url.Action("EditProfile", "Home")" class="btn btn-primary btn-lg" style="position: absolute; bottom: 5%; right: 5%;">Chỉnh sửa</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

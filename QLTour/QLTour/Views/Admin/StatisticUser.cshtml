@@ -1,0 +1,101 @@
+﻿@model IEnumerable<QLTour.Models.Tour>
+
+@{
+    ViewBag.Title = "Thống kê";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="col-9 main-layout-right">
+    <div class="h2 text-center p-3">Quản lý Tour</div>
+    <table>
+        <tbody>
+            <tr>
+                <th>Tên:</th>
+                <td>
+                    @ViewBag.Ten
+                </td>
+            </tr>
+            <tr>
+                <th>Email:</th>
+                <td>
+                    @ViewBag.Email
+                </td>
+            </tr>
+            <tr>
+                <th>Số điện thoại:</th>
+                <td>
+                    @ViewBag.SDT
+                </td>
+            </tr>
+            <tr>
+                <th>Địa chỉ:</th>
+                <td>
+                    @ViewBag.DiaChi
+                </td>
+            </tr>
+            <tr>
+                <th>Thành phố:</th>
+                <td>
+                    @ViewBag.ThanhPho
+                </td>
+            </tr>
+            <tr>
+                <th>Passport:</th>
+                <td>
+                    @ViewBag.Passport
+                </td>
+            </tr>
+        </tbody>
+    </table>
+        <hr />
+        @{int n = ViewBag.Check;}
+        @if (n == 0)
+        {
+            <p class="text-danger">@ViewBag.Msg</p>
+        }
+        else
+        {
+            <table class="table">
+                <thead class="table-success">
+                    <tr>
+                        <th scope="col">TourID</th>
+                        <th scope="col">Tên</th>
+                        <th>Giá Tour</th>
+                        <th>Số vé mua</th>
+                        <th scope="col">Tổng tiền</th>
+                        <th>Đơn vị tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        if (item.TongVeBan != null && item.TongVeBan != 0)
+                        {
+                            <tr>
+                                <th scope="row">@Html.DisplayFor(m => item.ID)</th>
+                                <td>@Html.DisplayFor(m => item.Ten)</td>
+                                <td>@String.Format("{0:0,###}", item.Gia)</td>
+                                @if (item.TongVeBan != null)
+                                {
+                                    <td>@Html.DisplayFor(m => item.TongVeBan)</td>
+                                }
+                                else
+                                {
+                                    <td>0</td>
+                                }
+                                @if (item.TongVeBan != null)
+                                {
+                                    <td>@String.Format("{0:0,###}", (item.Gia * item.TongVeBan))</td>
+                                }
+                                else
+                                {
+                                    <td>0</td>
+                                }
+                                <td>VNĐ</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        }
+    </div>

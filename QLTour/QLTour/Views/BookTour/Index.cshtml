@@ -1,0 +1,88 @@
+﻿@model QLTour.Models.TaiKhoan
+
+@{
+    ViewBag.Title = "Đặt tour";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <h1>Thanh Toán</h1>
+    @{ 
+        if(@ViewBag.Check == 0)
+            {
+                <p class="text-danger">@ViewBag.Msg</p>
+            }
+        else
+            {
+            <p class="text-success">@ViewBag.Msg</p>
+            }
+    }
+    <form id="user-info-form">
+        <div class="row">
+            <div class="col-md-6 pt-5">
+                <form id="tour-information-form">
+                    <div>
+                        <div class="row mb-2">
+                            <div class="col-6" style="padding-left:20%;"><b>Tên Tour</b></div>
+                            <div class="col-6"><span>@ViewBag.Ten</span></div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-6" style="padding-left:20%;"><b>Điểm đến du lịch</b></div>
+                            <div class="col-6"><span>@ViewBag.DiemDen</span></div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-6" style="padding-left:20%;"><b>Ngày khởi hành</b></div>
+                            <div class="col-6"><span>@String.Format("{0:d/M/yyyy}", ViewBag.NgayKhoiHanh)</span></div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-6" style="padding-left:20%;"><b>Giá Tour</b></div>
+                            <div class="col-6"><span>@String.Format("{0:0,###}", ViewBag.Gia) VNĐ</span></div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-6" style="padding-left:20%;"><b>Số Vé</b></div>
+                            <div class="col-6"><span>@ViewBag.SoVe</span></div>
+                        </div>
+                        <div class="d-flex justify-content-center"><hr style="width: 70%; background-color: #1953a7;"></div>
+                        <div class="row mb-2">
+                            <div class="col-6" style="padding-left:20%;"><b>Tổng tiền</b></div>
+                            <div class="col-6"><h5 id="totalPrice">@String.Format("{0:0,###}", ViewBag.Gia * ViewBag.SoVe) VNĐ</h3></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <h2>Tài khoản ngân hàng</h2>
+                @using (Html.BeginForm("Index", "BookTour", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <input type="hidden" value="@ViewBag.TourID" id="TourID" name="TourID" />
+                    <input type="hidden" value="@ViewBag.SoVe" id="SoVe" name="SoVe" class="form-control" />
+                    <div class="mb-3">
+                        <label for="bankName" class="form-label">Ngân hàng</label>
+                        @Html.DropDownList("NganHang", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                    <div class="mb-3">
+                        <label for="accountName" class="form-label">Tên chủ tài khoản</label>
+                        @Html.EditorFor(model => model.TenChuTaiKhoan, new { htmlAttributes = new { @class = "form-control" } })
+                        <p class="text-danger">@ViewBag.MsgTenChuTK</p>
+                    </div>
+                    <div class="mb-3">
+                        <label for="accountNumber" class="form-label">Số tài Khoản</label>
+                        @Html.EditorFor(model => model.SoTaiKhoan, new { htmlAttributes = new { @class = "form-control" } })
+                        <p class="text-danger">@ViewBag.MsgSTK</p>
+                    </div>
+                        if (ViewBag.Button == 1)
+                        {
+                             <button type="submit" class="btn btn-primary" disabled>Thanh toán</button>
+                        }
+                        else
+                        { 
+                            <button type="submit" class="btn btn-primary">Thanh toán</button>
+                        }
+                                            
+                }
+            </div>
+        </div>
+    </form>
+</div>

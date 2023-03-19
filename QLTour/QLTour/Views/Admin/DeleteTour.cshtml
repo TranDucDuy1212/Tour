@@ -1,0 +1,63 @@
+﻿@model QLTour.Models.Tour
+
+@{
+    ViewBag.Title = "Xoá Tour";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="col-9 main-layout-right">
+    <div class="h2 text-center p-3">Xoá Tour</div>
+    <div class="dl-horizontal">
+        <p>
+            <b>Tên:</b>
+            @Model.Ten
+        </p>
+        <p>
+            <b>Ngày khời hành:</b>
+            @String.Format("{0:d/M/yyyy}", Model.NgayKhoiHanh)
+        </p>
+        <p>
+            <b>Ngày kết thúc:</b>
+            @String.Format("{0:d/M/yyyy}", Model.NgayKetThuc)
+        </p>
+        <p>
+            <b>Điểm khởi hành:</b>
+            @Model.DiaDiem2.Ten
+        </p>
+        <p>
+            <b>Điểm đến:</b>
+            @Model.DiaDiem1.Ten
+        </p>
+        <p>
+            @{var n = Model.ThoiGian - 1;}
+            <b>Thời gian:</b>
+            @Model.ThoiGian ngày @n đêm
+        </p>
+        <p>
+            <b>Loại tour du lịch:</b>
+            @Model.LoaiTour1.Ten
+        </p>
+        <p>
+            <b>Giá:</b>
+            @String.Format("{0:0,###}", Model.Gia) VNĐ
+        </p>
+        <p>
+            <b>Mô tả:</b><br />
+            @Model.MoTa
+        </p>
+    </div>
+    <div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-actions no-color">
+                <input type="submit" value="Xoá" class="btn btn-danger" />
+                <a href="@Url.Action("Tour", "Admin")" class="btn btn-secondary">Đóng</a>
+            </div>
+         }
+    </div>
+    <br />
+    <br />
+    <br />
+</div>
+
