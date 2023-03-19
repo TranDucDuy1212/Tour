@@ -1,0 +1,6 @@
+Username : admin@gmail.com
+Password : Admin@123
+
+.NET 4.7.2
+
+Database: QLTour
